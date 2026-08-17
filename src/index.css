@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens — "Dlix" cinematic palette */
+  --color-void: #0a0a0d;
+  --color-charcoal: #17171c;
+  --color-charcoal-light: #212128;
+  --color-ember: #ff3b4e;
+  --color-ember-deep: #b01f30;
+  --color-marquee: #f2b705;
+  --color-fog: #a8a8b3;
+  --color-paper: #f4f4f2;
+
+  /* Type tokens */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Signature element: perforated film-strip divider, referencing the
+   sprocket holes of physical film stock. Used between hero and rows,
+   and as an underline accent in the nav. */
+.film-strip {
+  height: 10px;
+  background-image: radial-gradient(circle, var(--color-charcoal-light) 2.5px, transparent 2.5px);
+  background-size: 16px 10px;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.6;
+}
+
+/* Subtle film-grain texture overlay for the hero */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Custom scrollbar for horizontal reels */
+.reel-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.reel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reel-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal-light);
+  border-radius: 4px;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+.animate-flicker {
+  animation: flicker 2.5s ease-in-out infinite;
+}
+
+/* Hide scrollbar on mobile reels while keeping scroll functional */
+@media (max-width: 640px) {
+  .reel-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

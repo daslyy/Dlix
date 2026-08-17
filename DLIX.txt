@@ -1,0 +1,22 @@
+movie app name: Dlix 
+
+1. I want this app to have the following features:  Landing/browse page with hero banner
+Horizontal scrolling rows of content by category
+Modal or detail view on hover/click
+Basic auth 
+Search
+
+2. Data source : TMDB API
+
+3. Core building blocks:
+Navbar (fixed, becomes opaque on scroll)
+Hero Banner (large featured image + description, usually pulls a random trending item)
+Row component (fetches a category, renders posters in a horizontally scrollable flex/grid)
+Poster hover effects (scale up, show info)
+Modal/detail view
+Search bar wired to the API
+
+4. Styling Approach:  Tailwind css
+
+5. state/ data fetching: useState + useEffect
+
