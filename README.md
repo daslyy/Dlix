@@ -2,6 +2,9 @@
 
 A movie browsing app inspired by streaming platforms, built with React, Vite, Tailwind CSS v4, and the TMDB API.
 
+## 📸 Preview
+![dlix Preview](./src/assets/dlix.png)
+
 ## Features
 
 - Landing/browse page with a rotating hero banner pulled from trending titles

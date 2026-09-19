@@ -21,7 +21,7 @@ export default function Row({ category, onSelect }) {
           onClick={() => scrollBy(-600)}
           aria-label={`Scroll ${category.title} left`}
           className="hidden sm:flex absolute left-0 top-0 bottom-0 z-20 w-10 items-center justify-center
-                     bg-gradient-to-r from-void to-transparent opacity-0 group-hover/row:opacity-100 transition-opacity"
+                     bg-linear-to-r from-void to-transparent opacity-0 group-hover/row:opacity-100 transition-opacity"
         >
           <ChevronIcon direction="left" />
         </button>
@@ -34,7 +34,7 @@ export default function Row({ category, onSelect }) {
             ? Array.from({ length: 8 }).map((_, i) => (
                 <div
                   key={i}
-                  className="shrink-0 w-36 sm:w-44 aspect-[2/3] rounded-md bg-charcoal animate-pulse"
+                  className="shrink-0 w-36 sm:w-44 aspect-2/3 rounded-md bg-charcoal animate-pulse"
                 />
               ))
             : movies.map((movie) => (
@@ -46,7 +46,7 @@ export default function Row({ category, onSelect }) {
           onClick={() => scrollBy(600)}
           aria-label={`Scroll ${category.title} right`}
           className="hidden sm:flex absolute right-0 top-0 bottom-0 z-20 w-10 items-center justify-center
-                     bg-gradient-to-l from-void to-transparent opacity-0 group-hover/row:opacity-100 transition-opacity"
+                     bg-linear-to-l from-void to-transparent opacity-0 group-hover/row:opacity-100 transition-opacity"
         >
           <ChevronIcon direction="right" />
         </button>

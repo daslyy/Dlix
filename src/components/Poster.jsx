@@ -16,10 +16,10 @@ export default function Poster({ movie, onSelect }) {
         src={posterUrl(movie.poster_path)}
         alt={movie.title}
         loading="lazy"
-        className="w-full aspect-[2/3] object-cover"
+        className="w-full aspect-2/3 object-cover"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent
+        className="absolute inset-0 bg-linear-to-t from-void via-void/20 to-transparent
                    opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300
                    flex flex-col justify-end p-3 text-left"
       >

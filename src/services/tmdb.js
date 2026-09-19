@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const READ_ACCESS_TOKEN = import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
+
 
 export const IMAGE_BASE = 'https://image.tmdb.org/t/p/';
 export const backdropUrl = (path, size = 'original') =>
@@ -9,10 +10,12 @@ export const backdropUrl = (path, size = 'original') =>
 export const posterUrl = (path, size = 'w500') =>
   path ? `${IMAGE_BASE}${size}${path}` : null;
 
+//axios setup
 const tmdb = axios.create({
   baseURL: BASE_URL,
-  params: {
-    api_key: API_KEY,
+  headers: {
+    Authorization: `Bearer ${READ_ACCESS_TOKEN}`,
+    accept: 'application/json',
   },
 });
 
