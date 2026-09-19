@@ -2,7 +2,13 @@
 
 DLIX is a responsive movie-discovery single-page app with a streaming-style interface. Authenticated users can browse curated TMDB collections, search movies, open title details, and play an available YouTube trailer without leaving the app.
 
+##  Live Demo
+https://dlix-m.vercel.app/
+
+
 ![DLIX interface preview](./src/assets/dlix.png)
+
+
 
 ## Highlights
 
