@@ -4,17 +4,27 @@ import Banner from '../components/Banner';
 import Row from '../components/Row';
 import Modal from '../components/Modal';
 import SearchResults from '../components/SearchResults';
+import MyList from '../components/MyList';
 import { CATEGORIES, searchMovies } from '../services/tmdb';
+import useMyList from '../hooks/useMyList';
 
 export default function Browse() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searching, setSearching] = useState(false);
+  const [view, setView] = useState('browse');
+  const { movies, isSaved, toggleMovie } = useMyList();
 
   const handleSearch = useCallback((value) => {
     setQuery(value);
+    if (value.trim()) setView('browse');
   }, []);
+
+  function handleViewChange(nextView) {
+    setView(nextView);
+    if (nextView === 'list') setQuery('');
+  }
 
   useEffect(() => {
     if (!query.trim()) {
@@ -39,7 +49,7 @@ export default function Browse() {
 
   return (
     <div className="min-h-screen bg-void text-paper">
-      <Navbar onSearch={handleSearch} />
+      <Navbar onSearch={handleSearch} view={view} onViewChange={handleViewChange} />
 
       {isSearching ? (
         <SearchResults
@@ -47,6 +57,12 @@ export default function Browse() {
           results={searchResults}
           loading={searching}
           onSelect={setSelectedMovie}
+        />
+      ) : view === 'list' ? (
+        <MyList
+          movies={movies}
+          onSelect={setSelectedMovie}
+          onBrowse={() => handleViewChange('browse')}
         />
       ) : (
         <>
@@ -60,7 +76,12 @@ export default function Browse() {
         </>
       )}
 
-      <Modal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
+      <Modal
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+        isSaved={selectedMovie ? isSaved(selectedMovie.id) : false}
+        onToggleMyList={toggleMovie}
+      />
     </div>
   );
 }

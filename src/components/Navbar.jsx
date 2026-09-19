@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function Navbar({ onSearch }) {
+export default function Navbar({ onSearch, view, onViewChange }) {
   const [scrolled, setScrolled] = useState(false);
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -62,13 +62,21 @@ export default function Navbar({ onSearch }) {
           </span>
 
           <div className="hidden md:flex gap-6 text-sm font-medium text-fog">
-            <a href="/" className="hover:text-paper transition-colors">
+            <button
+              type="button"
+              onClick={() => onViewChange?.("browse")}
+              className={`hover:text-paper transition-colors ${view === "browse" ? "text-paper" : ""}`}
+            >
               Browse
-            </a>
+            </button>
 
-            <a href="/" className="hover:text-paper transition-colors">
+            <button
+              type="button"
+              onClick={() => onViewChange?.("list")}
+              className={`hover:text-paper transition-colors ${view === "list" ? "text-paper" : ""}`}
+            >
               My List
-            </a>
+            </button>
           </div>
         </div>
 

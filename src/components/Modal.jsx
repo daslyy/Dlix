@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchMovieDetails, backdropUrl } from "../services/tmdb";
 
-export default function Modal({ movie, onClose }) {
+export default function Modal({ movie, onClose, isSaved, onToggleMyList }) {
   const [details, setDetails] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
 
@@ -102,8 +102,12 @@ export default function Modal({ movie, onClose }) {
               {trailer ? "Play Trailer" : "Trailer Unavailable"}
             </button>
 
-            <button className="bg-charcoal-light text-paper font-semibold px-6 py-2.5 rounded hover:bg-charcoal-light/70 transition-colors">
-              + My List
+            <button
+              type="button"
+              onClick={() => onToggleMyList?.(movie)}
+              className="bg-charcoal-light text-paper font-semibold px-6 py-2.5 rounded hover:bg-charcoal-light/70 transition-colors"
+            >
+              {isSaved ? "Remove from My List" : "+ My List"}
             </button>
           </div>
         </div>

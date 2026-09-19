@@ -127,7 +127,7 @@ For deployed environments, add the site’s domain to Firebase Authentication’
 
 The navbar becomes opaque after scrolling, exposes a delayed search field, and shows a profile menu with the signed-in user’s name/email and a sign-out control. While a non-empty search query is active, the hero and category rows are replaced by a result grid.
 
-Selecting a poster or using the hero controls opens a modal. The modal makes a separate detail request so it can display fuller metadata, cast, and trailer availability. The `+ My List` control is currently visual only; it does not persist titles.
+Selecting a poster or using the hero controls opens a modal. The modal makes a separate detail request so it can display fuller metadata, cast, and trailer availability. Use `+ My List` to save a title; the control changes to **Remove from My List** once it is saved.
 
 ## Project structure
 
@@ -161,7 +161,7 @@ src/
 
 - **Change the rows:** edit `CATEGORIES` in `src/services/tmdb.js`. Each item requires a stable `key`, display `title`, TMDB `endpoint`, and optional request `params`.
 - **Change the visual language:** palette and type tokens live in the `@theme` block in `src/index.css`.
-- **Add persistent lists:** replace the non-functional `+ My List` button in `Modal.jsx` with a data model and UI state backed by a database or Firebase service.
+- **Move lists to the cloud:** saved titles are currently stored per Firebase user ID in the browser's `localStorage`. Replace `MyListContext` with a Firebase-backed data source to sync lists across devices.
 - **Add resilient API states:** category failures are intentionally hidden today, while hero/detail/search requests do not surface errors to the UI. Add user-facing error states and retries for a production-ready experience.
 - **Improve search scope:** the input suggests people and genres, but the current request is `search/movie`, so it searches movie titles and TMDB’s movie matching only.
 
@@ -177,7 +177,7 @@ When hosting an SPA, configure a rewrite that serves `index.html` for unknown ap
 
 - DLIX is a discovery interface, not a full streaming platform; it does not play feature films.
 - Trailer playback depends on TMDB metadata and YouTube availability.
-- “My List” is not implemented despite the navigation label and modal button.
+- Saved lists are stored only in the current browser; they do not yet sync across devices.
 - There is no test suite configured yet.
 
 ## Credits

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { MyListProvider } from './context/MyListContext';
 import Browse from './pages/Browse';
 import Login from './pages/Login';
 
@@ -30,7 +31,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppRoutes />
+        <MyListProvider>
+          <AppRoutes />
+        </MyListProvider>
       </AuthProvider>
     </BrowserRouter>
   );
